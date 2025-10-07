@@ -1,0 +1,91 @@
+167. Two Sum II - Input Array Is Sorted
+code
+  
+  class Solution:
+    def twoSum(self, numbers, target):
+        left, right = 0, len(numbers) - 1
+
+        while left < right:
+            current_sum = numbers[left] + numbers[right]
+
+            if current_sum == target:
+                return [left + 1, right + 1]
+            elif current_sum < target:
+                left += 1
+            else:
+                right -= 1
+
+
+
+class Solution:
+    # ----------------------------
+    # Problem 167: Two Sum II - Input Array Is Sorted
+    # ----------------------------
+    def twoSum(self, numbers, target):
+        left, right = 0, len(numbers) - 1
+
+        while left < right:
+            current_sum = numbers[left] + numbers[right]
+            if current_sum == target:
+                return [left + 1, right + 1]  # 1-indexed
+            elif current_sum < target:
+                left += 1
+            else:
+                right -= 1
+
+    # ----------------------------
+    # Problem 238: Product of Array Except Self
+    # ----------------------------
+    def productExceptSelf(self, nums):
+        n = len(nums)
+        answer = [1] * n
+
+        # Step 1: Prefix products
+        prefix = 1
+        for i in range(n):
+            answer[i] = prefix
+            prefix *= nums[i]
+
+        # Step 2: Suffix products
+        suffix = 1
+        for i in range(n-1, -1, -1):
+            answer[i] *= suffix
+            suffix *= nums[i]
+
+        return answer
+
+
+# ----------------------------
+# Test Calls
+# ----------------------------
+
+# Two Sum II Test
+numbers1 = [2, 7, 11, 15]
+target1 = 9
+result1 = Solution().twoSum(numbers1, target1)
+print("Two Sum II Output:", result1)  # Expected: [1, 2]
+
+
+
+Sort Colors
+
+class Solution:
+    def sortColors(self, nums):
+        low, mid, high = 0, 0, len(nums) - 1
+
+        while mid <= high:
+            if nums[mid] == 0:
+                nums[low], nums[mid] = nums[mid], nums[low]
+                low += 1
+                mid += 1
+            elif nums[mid] == 1:
+                mid += 1
+            else:  # nums[mid] == 2
+                nums[mid], nums[high] = nums[high], nums[mid]
+                high -= 1
+
+
+# Product of Array Except Self Test
+nums2 = [1, 2, 3, 4]
+result2 = Solution().productExceptSelf(nums2)
+print("Product Except Self Output:", result2)  # Expected: [24, 12, 8, 6]
